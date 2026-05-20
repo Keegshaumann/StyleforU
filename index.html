@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style 4 U — Hair Salon · Wilgeheuwel, Johannesburg</title>
+  <meta name="description" content="Style 4 U Hair Salon — a premium hair studio on Hendrik Potgieter Road, Johannesburg. Balayage, colour, braiding, extensions, keratin and more. Book online with Fresha." />
+
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===============================
+       Reset & Tokens
+       =============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:        #f7f2ec;   /* warm parchment */
+      --bg-alt:    #ede3d7;   /* soft sand */
+      --paper:     #ffffff;
+      --ink:       #1a1410;   /* near-black, warm */
+      --ink-soft:  #4a3f37;
+      --mute:      #8a7a6e;
+      --line:      #d9cabb;
+      --accent:    #8e6a3f;   /* antique gold */
+      --accent-dk: #6e4f29;
+      --rose:      #b88574;
+      --shadow-sm: 0 2px 8px rgba(26,20,16,0.04);
+      --shadow:    0 14px 40px rgba(26, 20, 16, 0.08);
+      --shadow-lg: 0 30px 80px rgba(26, 20, 16, 0.18);
+      --r-sm: 4px;
+      --r-md: 10px;
+      --r-lg: 18px;
+
+      --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+      --sans:  'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    h1 { font-size: clamp(2.8rem, 7vw, 6rem); }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.5rem); }
+    h3 { font-size: 1.5rem; }
+
+    p { color: var(--ink-soft); }
+    a  { color: inherit; text-decoration: none; }
+    img, iframe { display: block; max-width: 100%; }
+
+    .container { width: min(1240px, 90%); margin: 0 auto; }
+    .container-wide { width: min(1480px, 94%); margin: 0 auto; }
+
+    section { padding: clamp(5rem, 10vw, 9rem) 0; position: relative; }
+
+    /* ===============================
+       Typographic helpers
+       =============================== */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    .lede {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .section-head { margin-bottom: 4rem; }
+    .section-head .eyebrow { margin-bottom: 1rem; }
+    .section-head h2 { max-width: 18ch; }
+
+    /* ===============================
+       Buttons
+       =============================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.05rem 2.2rem;
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(.2,.7,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn .arrow {
+      width: 16px; height: 1px; background: currentColor;
+      position: relative;
+      transition: width 0.4s ease;
+    }
+    .btn .arrow::after {
+      content: ""; position: absolute; right: 0; top: -3px;
+      width: 7px; height: 7px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+    .btn:hover { background: var(--accent-dk); border-color: var(--accent-dk); color: #fff; }
+    .btn:hover .arrow { width: 26px; }
+
+    .btn-light { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+    .btn-light:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+
+    /* ===============================
+       Header
+       =============================== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.3rem 0;
+      transition: all 0.35s ease;
+      background: transparent;
+    }
+    header.scrolled {
+      background: rgba(247, 242, 236, 0.96);
+      backdrop-filter: blur(14px);
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-right { justify-content: flex-end; }
+
+    .nav a {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.25s ease;
+    }
+    .nav a::after {
+      content: ""; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 1px; background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .nav a:hover { color: var(--accent); }
+    .nav a:hover::after { width: 100%; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      justify-self: center;
+    }
+    .brand img {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+    .brand-text {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .brand-text span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.42em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 32px;
+      height: 24px;
+      position: relative;
+      justify-self: end;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle span:nth-child(1) { top: 4px; }
+    .menu-toggle span:nth-child(2) { top: 12px; }
+    .menu-toggle span:nth-child(3) { top: 20px; }
+    .menu-toggle.open span:nth-child(1) { top: 12px; transform: rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { top: 12px; transform: rotate(-45deg); }
+
+    /* ===============================
+       Hero
+       =============================== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      padding: 0;
+      gap: 0;
+    }
+    .hero-content {
+      padding: 9rem 6vw 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      position: relative;
+    }
+    .hero-content .eyebrow { margin-bottom: 1.8rem; }
+    .hero-content h1 {
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .hero-content .lede { max-width: 36ch; margin-bottom: 2.8rem; }
+
+    .hero-meta {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .hero-meta div { font-size: 0.85rem; }
+    .hero-meta strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .hero-meta span { color: var(--mute); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+    .hero-image {
+      position: relative;
+      background:
+        linear-gradient(rgba(26,20,16,0.05), rgba(26,20,16,0.15)),
+        url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=85') center/cover no-repeat;
+    }
+    .hero-image::after {
+      content: "Style 4 U";
+      position: absolute;
+      bottom: 3rem; right: 3rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.05em;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    /* ===============================
+       About — editorial split
+       =============================== */
+    .about { background: var(--bg); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-images {
+      position: relative;
+      aspect-ratio: 4 / 5;
+    }
+    .about-images img {
+      position: absolute;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+    .about-images .img-1 {
+      width: 70%;
+      height: 80%;
+      top: 0; left: 0;
+    }
+    .about-images .img-2 {
+      width: 55%;
+      height: 55%;
+      bottom: 0; right: 0;
+      border: 8px solid var(--bg);
+    }
+
+    .about-text .eyebrow { margin-bottom: 1.5rem; }
+    .about-text h2 { margin-bottom: 2rem; max-width: 14ch; }
+    .about-text p { font-size: 1.05rem; margin-bottom: 1.2rem; max-width: 50ch; }
+    .about-text .signature {
+      margin-top: 2.5rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--accent-dk);
+    }
+
+    /* ===============================
+       Services
+       =============================== */
+    .services { background: var(--bg-alt); }
+    .services .section-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 4rem;
+    }
+    .services .section-head p { max-width: 42ch; }
+
+    .services-list { border-top: 1px solid var(--line); }
+
+    .service-item {
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .service-item::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.55s cubic-bezier(.7,.0,.2,1);
+    }
+    .service-item.open::before { transform: scaleY(1); }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto auto;
+      gap: 2.5rem;
+      align-items: center;
+      width: 100%;
+      padding: 2.2rem 0 2.2rem 0;
+      background: transparent;
+      border: none;
+      font: inherit;
+      text-align: left;
+      color: inherit;
+      cursor: pointer;
+      transition:
+        padding 0.55s cubic-bezier(.7,.0,.2,1),
+        background-color 0.55s ease;
+    }
+    .service-row:hover,
+    .service-item.open .service-row {
+      padding-left: 1.5rem;
+      background-color: rgba(142, 106, 63, 0.05);
+    }
+    .service-item.open .service-row { padding-left: 1.8rem; }
+
+    .service-row .num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--accent);
+      transition: transform 0.55s cubic-bezier(.7,.0,.2,1);
+    }
+    .service-item.open .service-row .num { transform: translateX(4px); }
+
+    .service-row .name {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      font-weight: 500;
+      color: var(--ink);
+      transition: color 0.4s ease, letter-spacing 0.55s cubic-bezier(.7,.0,.2,1);
+    }
+    .service-row:hover .name,
+    .service-item.open .service-row .name {
+      color: var(--accent-dk);
+    }
+
+    .service-row .desc {
+      font-size: 0.92rem;
+      color: var(--mute);
+      max-width: 38ch;
+      text-align: right;
+      transition: opacity 0.4s ease;
+    }
+    .service-item.open .service-row .desc { opacity: 0.5; }
+
+    /* +/- toggle icon */
+    .service-row .plus {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+      transition:
+        background-color 0.45s ease,
+        border-color 0.45s ease,
+        transform 0.55s cubic-bezier(.7,.0,.2,1);
+      color: var(--ink-soft);
+    }
+    .service-row .plus::before,
+    .service-row .plus::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 12px; height: 1px;
+      background: currentColor;
+      transform: translate(-50%, -50%);
+      transition: transform 0.55s cubic-bezier(.7,.0,.2,1);
+    }
+    .service-row .plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+    .service-row:hover .plus {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .service-item.open .service-row .plus {
+      background: var(--accent-dk);
+      color: #fff;
+      border-color: var(--accent-dk);
+      transform: rotate(180deg);
+    }
+    .service-item.open .service-row .plus::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    /* Expandable detail panel — uses grid-template-rows for smooth height */
+    .service-detail {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.6s cubic-bezier(.7,.0,.2,1);
+    }
+    .service-detail-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .service-detail-content {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 0.4rem 0 2.6rem 1.8rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.55s ease 0.05s, transform 0.55s cubic-bezier(.7,.0,.2,1) 0.05s;
+    }
+    .service-detail-content p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--ink-soft);
+      max-width: 56ch;
+      line-height: 1.5;
+      grid-column: 2;
+    }
+    .service-detail-content .mini-btn {
+      grid-column: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent-dk);
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--accent);
+      transition: gap 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    .service-detail-content .mini-btn:hover {
+      gap: 1rem;
+      color: var(--ink);
+    }
+    .service-detail-content .mini-btn::after {
+      content: "→";
+      transition: transform 0.3s ease;
+    }
+
+    .service-item.open .service-detail { grid-template-rows: 1fr; }
+    .service-item.open .service-detail-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===============================
+       Booking
+       =============================== */
+    .booking {
+      background:
+        linear-gradient(rgba(26,20,16,0.65), rgba(26,20,16,0.75)),
+        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat fixed;
+      color: var(--bg);
+      text-align: center;
+    }
+    .booking .eyebrow { color: var(--rose); }
+    .booking .eyebrow::before { background: var(--rose); }
+    .booking h2 { color: var(--bg); max-width: 22ch; margin: 0 auto 1.5rem; }
+    .booking .lede { color: rgba(247, 242, 236, 0.85); max-width: 56ch; margin: 0 auto 3rem; }
+    .booking .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+    .booking .btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .booking-meta {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(247,242,236,0.15);
+    }
+    .booking-meta div { color: rgba(247, 242, 236, 0.7); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .booking-meta strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--bg);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 500;
+    }
+
+    /* ===============================
+       Hours
+       =============================== */
+    .hours {
+      background: var(--bg);
+    }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hours-image {
+      aspect-ratio: 4 / 5;
+      background: url('https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=1000&q=85') center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+    .hours-content h2 { margin-bottom: 2.5rem; max-width: 14ch; }
+
+    .hours-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.05rem;
+    }
+    .hours-list .day {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .hours-list .time {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--accent-dk);
+      font-weight: 500;
+    }
+
+    /* ===============================
+       Contact
+       =============================== */
+    .contact { background: var(--bg-alt); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: stretch;
+    }
+    .contact-info { padding-right: 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .contact-info h2 { margin-bottom: 2rem; max-width: 14ch; }
+    .contact-info .lede { margin-bottom: 2.5rem; }
+
+    .info-block {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .info-block:last-of-type { border-bottom: none; }
+    .info-block .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .info-block .value {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .info-block .value a { transition: color 0.25s ease; }
+    .info-block .value a:hover { color: var(--accent-dk); }
+
+    .map-wrap {
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 540px;
+      filter: grayscale(40%) contrast(0.95);
+      transition: filter 0.4s ease;
+    }
+    .map-wrap:hover { filter: grayscale(0%) contrast(1); }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      border: 0;
+    }
+
+    /* ===============================
+       Footer
+       =============================== */
+    footer {
+      background: var(--ink);
+      color: rgba(247, 242, 236, 0.7);
+      padding: 6rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(247,242,236,0.1);
+    }
+    .footer-brand h3 {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      color: var(--bg);
+      margin-bottom: 1rem;
+    }
+    .footer-brand h3 span { color: var(--accent); font-style: italic; }
+    .footer-brand p { color: rgba(247, 242, 236, 0.55); max-width: 30ch; }
+
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a {
+      color: rgba(247, 242, 236, 0.75);
+      font-size: 0.95rem;
+      transition: color 0.25s ease;
+    }
+    .footer-col a:hover { color: var(--bg); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      font-size: 0.78rem;
+      color: rgba(247,242,236,0.4);
+      letter-spacing: 0.1em;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ===============================
+       Reveal-on-scroll
+       =============================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===============================
+       Responsive
+       =============================== */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-image { min-height: 60vh; }
+      .hero-content { padding: 8rem 6vw 5rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .about-images { max-width: 480px; }
+
+      .services .section-head { grid-template-columns: 1fr; gap: 2rem; }
+      .service-row { grid-template-columns: 40px 1fr auto; }
+      .service-row .desc { display: none; }
+
+      .hours-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hours-image { max-width: 420px; margin: 0 auto; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-info { padding-right: 0; }
+      .map-wrap { min-height: 380px; }
+      .map-wrap iframe { min-height: 380px; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .nav { grid-template-columns: auto 1fr auto; }
+      .nav-left, .nav-right { display: none; }
+
+      header.menu-open .nav-left,
+      header.menu-open .nav-right {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 70px; left: 0; right: 0; bottom: 0;
+        background: var(--bg);
+        padding: 4rem 8vw;
+        gap: 1.8rem;
+        justify-content: flex-start;
+        z-index: 99;
+      }
+      header.menu-open .nav-right { top: calc(70px + 320px); padding-top: 0; }
+      header.menu-open .nav a {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        letter-spacing: 0;
+        text-transform: none;
+        font-weight: 500;
+      }
+
+      .menu-toggle { display: block; }
+      .brand { justify-self: start; }
+      .brand-text { font-size: 1.2rem; }
+
+      .hero-meta { flex-direction: column; gap: 1.5rem; }
+      .booking-meta { gap: 2rem; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .service-row { grid-template-columns: 30px 1fr auto; gap: 1rem; padding: 1.6rem 0; }
+      .service-row:hover { padding-left: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============== Header =============== -->
+  <header id="site-header">
+    <div class="container nav">
+      <ul class="nav-left">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#hours">Hours</a></li>
+      </ul>
+
+      <a href="#hero" class="brand">
+        <img src="assets/logo.jpg" alt="Style 4 U Hair Salon" />
+        <div class="brand-text">
+          Style 4 U
+          <span>Hair Salon</span>
+        </div>
+      </a>
+
+      <ul class="nav-right">
+        <li><a href="#booking">Book</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+27114750601">+27 11 475 0601</a></li>
+      </ul>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =============== Hero =============== -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Est. Wilgeheuwel · Johannesburg</span>
+      <h1>Your Style.<br /><em>Your Way.</em></h1>
+      <p class="lede">
+        A considered approach to hair — from luminous balayage and bespoke colour
+        to braiding, smoothing, and the perfect blow-dry.
+      </p>
+      <div>
+        <a class="btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">
+          Book an appointment <span class="arrow"></span>
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div>
+          <span>Visit</span>
+          <strong>Hendrik Potgieter Rd</strong>
+        </div>
+        <div>
+          <span>Call</span>
+          <strong>+27 11 475 0601</strong>
+        </div>
+        <div>
+          <span>Open Today</span>
+          <strong>08:00 — 17:00</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image" aria-hidden="true"></div>
+  </section>
+
+  <!-- =============== About =============== -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal">
+          <img class="img-1" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=85" alt="Soft hair detail" />
+          <img class="img-2" src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=85" alt="Salon interior" />
+        </div>
+
+        <div class="about-text reveal">
+          <span class="eyebrow">Our Story</span>
+          <h2>A salon built around how you want to feel.</h2>
+          <p>
+            Tucked into Retail Crossing on Hendrik Potgieter Road, Style 4 U is a
+            warm, considered space where the focus is simple: hair that makes you
+            feel like yourself — only a little more so.
+          </p>
+          <p>
+            From bespoke colour and luminous balayage to expert braiding,
+            extensions and smoothing treatments, every service is tailored —
+            unhurried, attentive, and finished with care.
+          </p>
+          <div class="signature">— The Style 4 U team</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Services =============== -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">The Menu</span>
+          <h2>Services, crafted with intention.</h2>
+        </div>
+        <p>
+          A complete offering of cut, colour, treatment and texture work —
+          delivered by stylists who take the time to get it right.
+        </p>
+      </div>
+
+      <div class="services-list" id="services-list">
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">01</span>
+            <span class="name">Balayage</span>
+            <span class="desc">Hand-painted highlights for soft, sun-kissed dimension.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>A freehand colouring technique that paints light through the hair for a soft, lived-in finish — bespoke to your base tone, never two clients alike. Includes a tailored toner and a deep-conditioning gloss.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">02</span>
+            <span class="name">Hair Colouring</span>
+            <span class="desc">Bespoke single-process colour, matched to your skin and style.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>From rich, glossy brunettes to luminous reds and refined blondes — every formula is mixed for you, with care for the integrity of your hair. A complimentary colour consultation is included with every appointment.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">03</span>
+            <span class="name">Highlights</span>
+            <span class="desc">Classic foil work for brightness, depth, and contrast.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>Traditional foil highlights placed with intention — full head, half head, or a few face-framing pieces — for dimension that catches the light. Finished with a customised toner.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">04</span>
+            <span class="name">Blow Dry &amp; Styling</span>
+            <span class="desc">A polished finish for every occasion — sleek, soft or sculpted.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>From smooth and glossy to soft waves and full-bodied glamour — every blow-dry begins with a quiet consultation and ends with a finish that lasts. Ideal for events, weddings, or simply because.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">05</span>
+            <span class="name">Keratin Treatments</span>
+            <span class="desc">Smoothing, strengthening, and shine — for weeks of effortless hair.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>A professional smoothing treatment that reduces frizz, cuts blow-dry time, and leaves hair with a soft, mirror-like shine. Results last up to three months with the right aftercare.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">06</span>
+            <span class="name">Permanent Straightening</span>
+            <span class="desc">Long-lasting smoothness and manageability, professionally applied.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>A long-lasting straightening service for hair that resists the brush — applied with care, finished with a treatment, and tailored to suit your hair&rsquo;s natural texture and condition.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">07</span>
+            <span class="name">Perms</span>
+            <span class="desc">From soft waves to defined curls, tailored to your hair.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>Modern perms with a soft, lived-in finish — from beachy body waves to defined curls. Each set is designed around your face, your hair, and how you actually wear it day-to-day.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">08</span>
+            <span class="name">Curly Hair Treatments</span>
+            <span class="desc">Care and definition for natural curls and coils.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>Specialist care for natural curls and coils — hydration, definition, and a cut shaped curl-by-curl. Ideal for restoring bounce and softness after heat or chemical wear.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">09</span>
+            <span class="name">Hair Braiding</span>
+            <span class="desc">From box braids to cornrows, plaited with precision.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>Box braids, cornrows, knotless styles and more — plaited by hand with patience and precision. Choose your length, thickness, and finish; we&rsquo;ll take care of the rest.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">10</span>
+            <span class="name">Hair Extensions &amp; Weaves</span>
+            <span class="desc">Length, volume, and texture — seamlessly integrated.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>Length and volume, applied so they sit and move like your own hair. We work with a range of high-quality wefts and bonds — colour-matched, blended, and finished with a fresh cut.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+
+        <div class="service-item reveal">
+          <button class="service-row" aria-expanded="false">
+            <span class="num">11</span>
+            <span class="name">Children&rsquo;s Haircuts</span>
+            <span class="desc">A gentle, patient cut for the smallest clients.</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
+            <p>A calm, kind experience for our youngest visitors — first haircuts, trims and styling done with patience and care, in a chair that feels safe and welcoming.</p>
+            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Booking =============== -->
+  <section id="booking" class="booking">
+    <div class="container">
+      <div class="reveal" style="display:flex; flex-direction:column; align-items:center;">
+        <span class="eyebrow">Book Online</span>
+        <h2 style="margin-top:1.2rem;">Reserve your seat in a few quiet seconds.</h2>
+        <p class="lede">
+          Choose your service, pick the time that suits you, and we&rsquo;ll take care
+          of the rest. Online booking is powered by Fresha.
+        </p>
+        <a class="btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">
+          Book on Fresha <span class="arrow"></span>
+        </a>
+      </div>
+
+      <div class="booking-meta">
+        <div>
+          <strong>Walk-ins</strong>
+          Welcome when slots allow
+        </div>
+        <div>
+          <strong>Call us</strong>
+          +27 11 475 0601
+        </div>
+        <div>
+          <strong>Gift cards</strong>
+          Available in salon
+        </div>
+      </div>
+
+      <!-- Fresha embed container (script loaded at end of body) -->
+      <div class="fresha-widget" data-url="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- =============== Hours =============== -->
+  <section id="hours" class="hours">
+    <div class="container">
+      <div class="hours-grid">
+        <div class="hours-image reveal" aria-hidden="true"></div>
+
+        <div class="hours-content reveal">
+          <span class="eyebrow">Open All Week</span>
+          <h2>We&rsquo;d love to see you.</h2>
+          <p class="lede" style="margin-bottom:2.5rem;">
+            Drop in, or schedule ahead — we keep our chairs busy but never rushed.
+          </p>
+
+          <ul class="hours-list">
+            <li>
+              <span class="day">Monday — Friday</span>
+              <span class="time">08:00 — 17:00</span>
+            </li>
+            <li>
+              <span class="day">Saturday</span>
+              <span class="time">08:00 — 16:00</span>
+            </li>
+            <li>
+              <span class="day">Sunday</span>
+              <span class="time">09:00 — 14:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Contact =============== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <span class="eyebrow">Find Us</span>
+          <h2>Visit the salon.</h2>
+          <p class="lede">
+            Tucked into Retail Crossing on Hendrik Potgieter Road, with easy
+            parking right at the door.
+          </p>
+
+          <div class="info-block">
+            <span class="label">Address</span>
+            <div class="value">
+              10 Retail Crossing<br />
+              Hendrik Potgieter Rd, Wilgeheuwel<br />
+              Johannesburg, 1724
+            </div>
+          </div>
+
+          <div class="info-block">
+            <span class="label">Phone</span>
+            <div class="value"><a href="tel:+27114750601">+27 11 475 0601</a></div>
+          </div>
+
+          <div class="info-block">
+            <span class="label">Online</span>
+            <div class="value">
+              <a href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book via Fresha &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap reveal">
+          <iframe
+            title="Style 4 U Hair Salon location"
+            src="https://www.google.com/maps?q=10+Retail+Crossing,+Hendrik+Potgieter+Rd,+Wilgeheuwel,+Johannesburg&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== Footer =============== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Style <span>4</span> U</h3>
+          <p>A premium hair studio in Wilgeheuwel, Johannesburg — where every visit is unhurried, attentive, and a little luxurious.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li>10 Retail Crossing</li>
+            <li>Hendrik Potgieter Rd</li>
+            <li>Wilgeheuwel, JHB 1724</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+27114750601">+27 11 475 0601</a></li>
+            <li><a href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book on Fresha</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="year"></span> Style 4 U Hair Salon. All rights reserved.</div>
+        <div>Designed with care · Hendrik Potgieter Road</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fresha Widget -->
+  <script src="https://widget.fresha.com/widget.js" async></script>
+
+  <script>
+    // ----- Sticky header on scroll -----
+    const header = document.getElementById('site-header');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ----- Mobile menu -----
+    const toggle = document.querySelector('.menu-toggle');
+    toggle.addEventListener('click', () => {
+      const open = header.classList.toggle('menu-open');
+      toggle.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        header.classList.remove('menu-open');
+        toggle.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ----- Service accordion -----
+    const list = document.getElementById('services-list');
+    if (list) {
+      list.addEventListener('click', (e) => {
+        const row = e.target.closest('.service-row');
+        if (!row) return;
+        const item = row.closest('.service-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close any other open item for a clean single-open accordion
+        list.querySelectorAll('.service-item.open').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('open');
+            other.querySelector('.service-row').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        item.classList.toggle('open', !isOpen);
+        row.setAttribute('aria-expanded', String(!isOpen));
+      });
+    }
+
+    // ----- Reveal on scroll -----
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ----- Year -----
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
