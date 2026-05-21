@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Style 4 U — Hair Salon · Wilgeheuwel, Johannesburg</title>
-  <meta name="description" content="Style 4 U Hair Salon — a premium hair studio on Hendrik Potgieter Road, Johannesburg. Balayage, colour, braiding, extensions, keratin and more. Book online with Fresha." />
+  <meta name="description" content="Style 4 U Hair Salon — a premium hair studio on Hendrik Potgieter Road, Johannesburg. Balayage, colour, braiding, extensions, keratin and more. Book by WhatsApp or email." />
 
   <link rel="icon" href="assets/logo.jpg" type="image/jpeg" />
 
@@ -569,6 +569,23 @@
     .booking .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
     .booking .btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+    .booking-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .booking .btn-outline {
+      background: transparent;
+      color: var(--bg);
+      border-color: rgba(247, 242, 236, 0.5);
+    }
+    .booking .btn-outline:hover {
+      background: var(--bg);
+      color: var(--ink);
+      border-color: var(--bg);
+    }
+
     .booking-meta {
       margin-top: 4rem;
       display: flex;
@@ -818,6 +835,59 @@
       .service-row { grid-template-columns: 30px 1fr auto; gap: 1rem; padding: 1.6rem 0; }
       .service-row:hover { padding-left: 0.5rem; }
     }
+
+    /* ===============================
+       WhatsApp floating button
+       =============================== */
+    .wa-float {
+      position: fixed;
+      right: clamp(1.2rem, 3vw, 2.4rem);
+      bottom: clamp(1.2rem, 3vw, 2.4rem);
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.95rem 1.45rem 0.95rem 1.1rem;
+      background: #25d366;
+      color: #fff;
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(37, 211, 102, 0.38), var(--shadow-sm);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(140%);
+      transition:
+        transform 0.6s cubic-bezier(.2,.7,.2,1),
+        opacity 0.6s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+    .wa-float.in { opacity: 1; transform: translateY(0); }
+    .wa-float:hover {
+      background: #1da851;
+      box-shadow: 0 16px 40px rgba(37, 211, 102, 0.52);
+    }
+    .wa-float svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .wa-label { white-space: nowrap; }
+
+    /* keep the button out of the way while the mobile menu is open */
+    header.menu-open ~ .wa-float {
+      opacity: 0;
+      transform: translateY(140%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 720px) {
+      .wa-float { padding: 1rem; }
+      .wa-label { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wa-float { transition: opacity 0.3s ease, background-color 0.35s ease; }
+    }
   </style>
 </head>
 <body>
@@ -861,7 +931,7 @@
         to braiding, smoothing, and the perfect blow-dry.
       </p>
       <div>
-        <a class="btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">
+        <a class="btn" data-wa="" href="https://wa.me/" target="_blank" rel="noopener">
           Book an appointment <span class="arrow"></span>
         </a>
       </div>
@@ -937,7 +1007,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>A freehand colouring technique that paints light through the hair for a soft, lived-in finish — bespoke to your base tone, never two clients alike. Includes a tailored toner and a deep-conditioning gloss.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Balayage" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -950,7 +1020,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>From rich, glossy brunettes to luminous reds and refined blondes — every formula is mixed for you, with care for the integrity of your hair. A complimentary colour consultation is included with every appointment.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Hair Colouring" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -963,7 +1033,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>Traditional foil highlights placed with intention — full head, half head, or a few face-framing pieces — for dimension that catches the light. Finished with a customised toner.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Highlights" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -976,7 +1046,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>From smooth and glossy to soft waves and full-bodied glamour — every blow-dry begins with a quiet consultation and ends with a finish that lasts. Ideal for events, weddings, or simply because.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Blow-Dry &amp; Styling" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -989,7 +1059,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>A professional smoothing treatment that reduces frizz, cuts blow-dry time, and leaves hair with a soft, mirror-like shine. Results last up to three months with the right aftercare.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Keratin Treatment" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1002,7 +1072,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>A long-lasting straightening service for hair that resists the brush — applied with care, finished with a treatment, and tailored to suit your hair&rsquo;s natural texture and condition.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Permanent Straightening" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1015,7 +1085,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>Modern perms with a soft, lived-in finish — from beachy body waves to defined curls. Each set is designed around your face, your hair, and how you actually wear it day-to-day.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Perms" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1028,7 +1098,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>Specialist care for natural curls and coils — hydration, definition, and a cut shaped curl-by-curl. Ideal for restoring bounce and softness after heat or chemical wear.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Curly Hair Treatment" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1041,7 +1111,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>Box braids, cornrows, knotless styles and more — plaited by hand with patience and precision. Choose your length, thickness, and finish; we&rsquo;ll take care of the rest.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Hair Braiding" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1054,7 +1124,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>Length and volume, applied so they sit and move like your own hair. We work with a range of high-quality wefts and bonds — colour-matched, blended, and finished with a fresh cut.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="Hair Extensions &amp; Weaves" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
 
@@ -1067,7 +1137,7 @@
           </button>
           <div class="service-detail"><div class="service-detail-inner"><div class="service-detail-content">
             <p>A calm, kind experience for our youngest visitors — first haircuts, trims and styling done with patience and care, in a chair that feels safe and welcoming.</p>
-            <a class="mini-btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book this service</a>
+            <a class="mini-btn" data-wa="a Children&rsquo;s Haircut" href="https://wa.me/" target="_blank" rel="noopener">Book this service</a>
           </div></div></div>
         </div>
       </div>
@@ -1078,15 +1148,20 @@
   <section id="booking" class="booking">
     <div class="container">
       <div class="reveal" style="display:flex; flex-direction:column; align-items:center;">
-        <span class="eyebrow">Book Online</span>
+        <span class="eyebrow">Get in Touch</span>
         <h2 style="margin-top:1.2rem;">Reserve your seat in a few quiet seconds.</h2>
         <p class="lede">
-          Choose your service, pick the time that suits you, and we&rsquo;ll take care
-          of the rest. Online booking is powered by Fresha.
+          Message us on WhatsApp or send an email — tell us the service and a
+          time that suits you, and we&rsquo;ll take care of the rest.
         </p>
-        <a class="btn" href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">
-          Book on Fresha <span class="arrow"></span>
-        </a>
+        <div class="booking-actions">
+          <a class="btn" data-wa="" href="https://wa.me/" target="_blank" rel="noopener">
+            Book on WhatsApp <span class="arrow"></span>
+          </a>
+          <a class="btn btn-outline" href="mailto:style4u.hairstudio@gmail.com?subject=Appointment%20enquiry%20%E2%80%94%20Style%204%20U">
+            Email us <span class="arrow"></span>
+          </a>
+        </div>
       </div>
 
       <div class="booking-meta">
@@ -1103,9 +1178,6 @@
           Available in salon
         </div>
       </div>
-
-      <!-- Fresha embed container (script loaded at end of body) -->
-      <div class="fresha-widget" data-url="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" style="display:none;"></div>
     </div>
   </section>
 
@@ -1168,9 +1240,14 @@
           </div>
 
           <div class="info-block">
-            <span class="label">Online</span>
+            <span class="label">Email</span>
+            <div class="value"><a href="mailto:style4u.hairstudio@gmail.com">style4u.hairstudio@gmail.com</a></div>
+          </div>
+
+          <div class="info-block">
+            <span class="label">Bookings</span>
             <div class="value">
-              <a href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book via Fresha &rarr;</a>
+              <a data-wa="" href="https://wa.me/" target="_blank" rel="noopener">Book via WhatsApp &rarr;</a>
             </div>
           </div>
         </div>
@@ -1209,7 +1286,8 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+27114750601">+27 11 475 0601</a></li>
-            <li><a href="https://www.fresha.com/lvp/style-4-u-hair-salon-hendrik-potgieter-road-johannesburg-D7LVJP" target="_blank" rel="noopener">Book on Fresha</a></li>
+            <li><a href="mailto:style4u.hairstudio@gmail.com">style4u.hairstudio@gmail.com</a></li>
+            <li><a data-wa="" href="https://wa.me/" target="_blank" rel="noopener">Book on WhatsApp</a></li>
           </ul>
         </div>
 
@@ -1230,8 +1308,14 @@
     </div>
   </footer>
 
-  <!-- Fresha Widget -->
-  <script src="https://widget.fresha.com/widget.js" async></script>
+  <!-- =============== WhatsApp floating button =============== -->
+  <a id="wa-float" class="wa-float" data-wa="" href="https://wa.me/" target="_blank" rel="noopener"
+     aria-label="Chat with Style 4 U on WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.583 2.141 8.016L0 32l8.184-2.141A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.766-1.852l-.485-.288-5.024 1.316 1.34-4.896-.316-.502A13.27 13.27 0 1 1 16 29.333zm7.293-9.94c-.4-.2-2.366-1.167-2.733-1.3-.367-.134-.634-.2-.9.2-.267.4-1.034 1.3-1.267 1.567-.234.267-.467.3-.867.1-.4-.2-1.688-.622-3.215-1.984-1.188-1.06-1.99-2.37-2.223-2.77-.234-.4-.025-.616.175-.815.18-.18.4-.467.6-.7.2-.234.267-.4.4-.667.134-.267.067-.5-.033-.7-.1-.2-.9-2.17-1.234-2.97-.325-.78-.655-.674-.9-.687l-.767-.013c-.267 0-.7.1-1.067.5-.367.4-1.4 1.367-1.4 3.334 0 1.967 1.434 3.867 1.634 4.134.2.267 2.82 4.307 6.834 6.04.955.412 1.7.658 2.28.842.958.305 1.83.262 2.52.159.769-.115 2.366-.967 2.7-1.9.334-.934.334-1.734.234-1.9-.1-.167-.367-.267-.767-.467z"/>
+    </svg>
+    <span class="wa-label">WhatsApp</span>
+  </a>
 
   <script>
     // ----- Sticky header on scroll -----
@@ -1290,6 +1374,28 @@
 
     // ----- Year -----
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ----- WhatsApp links -----
+    // TODO: add the Style 4 U WhatsApp number below in international format,
+    // digits only — no '+', spaces or dashes. e.g. '27821234567' for SA.
+    // Leave as '' until the salon provides it; links still work but open
+    // WhatsApp without a preset recipient.
+    const WHATSAPP_NUMBER = '';
+
+    // Every element with a [data-wa] attribute becomes a WhatsApp chat link.
+    // The attribute value, when set, is the service name used to prefill the message.
+    const waBase = WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}` : 'https://wa.me/';
+    document.querySelectorAll('[data-wa]').forEach(el => {
+      const service = el.getAttribute('data-wa').trim();
+      const text = service
+        ? `Hi Style 4 U! I'd like to book ${service}.`
+        : "Hi Style 4 U! I'd like to book an appointment.";
+      el.href = `${waBase}?text=${encodeURIComponent(text)}`;
+    });
+
+    // Reveal the floating button shortly after load.
+    const waBtn = document.getElementById('wa-float');
+    if (waBtn) setTimeout(() => waBtn.classList.add('in'), 900);
   </script>
 
 </body>
